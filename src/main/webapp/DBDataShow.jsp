@@ -19,10 +19,7 @@
     list = DBDataShow.getDataFromDB();
 %>
 <table border="1">
-    <tcap>
-        <align middle>Osoby:</align>
-    </tcap>
-    <%for (Employee employee : list) {%>
+
     <tr>
         <td>Id</td>
         <td>Imię</td>
@@ -30,6 +27,10 @@
         <td>Nazwisko</td>
         <td>Data Urodzenia</td>
     </tr>
+    <tcap>
+        <align middle>Osoby:</align>
+    </tcap>
+    <%for (Employee employee : list) {%>
     <tr>
         <td>
             <%=employee.getId()%>
