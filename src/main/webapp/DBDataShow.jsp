@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dbclass.Employee" %>
 <%@ page import="servlets.DBDataShow" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: voiciehb
   Date: 10.06.2021
@@ -15,29 +15,36 @@
 </head>
 <body>
 <%
-    ArrayList<Employee> list = new ArrayList<>();
+    ArrayList<Employee> list;
     list = DBDataShow.getDataFromDB();
 %>
 <table border="1">
     <tcap>
         <align middle>Osoby:</align>
     </tcap>
-    <%for (int i = 0; i < list.size(); i++) {%>
+    <%for (Employee employee : list) {%>
+    <tr>
+        <td>Id</td>
+        <td>Imię</td>
+        <td>Drugie Imię</td>
+        <td>Nazwisko</td>
+        <td>Data Urodzenia</td>
+    </tr>
     <tr>
         <td>
-            <%=list.get(i).getId()%>
+            <%=employee.getId()%>
         </td>
         <td>
-            <%=list.get(i).getFirstName()%>
+            <%=employee.getFirstName()%>
         </td>
         <td>
-            <%=list.get(i).getSecondName()%>
+            <%=employee.getSecondName()%>
         </td>
         <td>
-            <%=list.get(i).getSurname()%>
+            <%=employee.getSurname()%>
         </td>
         <td>
-            <%=list.get(i).getBirthDate()%>
+            <%=employee.getBirthDate()%>
         </td>
     </tr>
     <%}%>

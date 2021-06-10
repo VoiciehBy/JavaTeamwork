@@ -26,7 +26,7 @@ public class DBDataShow extends HttpServlet {
                 e.setId(resultSet.getInt("id"));
                 e.setFirstName(resultSet.getString("name1"));
                 e.setSecondName(resultSet.getString("name2"));
-                e.setSecondName(resultSet.getString("surname"));
+                e.setSurname(resultSet.getString("surname"));
                 e.setBirthDate(resultSet.getDate("birthDate"));
             list.add(e);
             }
@@ -35,7 +35,6 @@ public class DBDataShow extends HttpServlet {
         }
         return list;
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
