@@ -7,10 +7,11 @@ public class DBConnection {
     private static Connection connection;
 
     public static Connection getConnection(String DBName) throws SQLException {
-        String url = "jdbc:mysql://localhost/" + DBName;
+        String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/" + DBName;
         Properties properties = new Properties();
-        properties.setProperty("user", "root");
-        properties.setProperty("password", "");
+        SecretPassword secretPassword = new SecretPassword();
+        properties.setProperty("user", "sql11419677");
+        properties.setProperty("password", secretPassword.getPassword());
 
         connection = DriverManager.getConnection(url, properties);
         return connection;
@@ -53,10 +54,10 @@ public class DBConnection {
     }
 
     public static void createTables() throws SQLException {
-        executeDDL("CREATE TABLE IF NOT EXIST credentials(id int auto_increment primary key,"
+        executeDDL("CREATE TABLE IF NOT EXISTS credentials(id int auto_increment primary key,"
                 + "login varchar(20) not null,"
                 + "password varchar(20) not null);");
-        executeDDL("CREATE TABLE IF NOT EXIST employee(id int auto_increment primary key,"
+        executeDDL("CREATE TABLE IF NOT EXISTS employees(id int auto_increment primary key,"
                 + "name1 varchar(100) not null,"
                 + "name2 varchar(100) not null,"
                 + "surname varchar(100) not null,"

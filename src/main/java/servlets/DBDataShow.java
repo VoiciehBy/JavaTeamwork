@@ -19,7 +19,7 @@ public class DBDataShow extends HttpServlet {
         String select = "SELECT * FROM employees;";
         ArrayList<Employee> list = new ArrayList<>();
         try {
-            DBConnection.getConnection("DB");
+            DBConnection.getConnection("sql11419677");
             ResultSet resultSet = DBConnection.getData(select);
             while (resultSet.next()) {
                 Employee e = new Employee();

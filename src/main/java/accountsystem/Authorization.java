@@ -12,7 +12,7 @@ public class Authorization {
         ArrayList<User> list = new ArrayList<>();
         ResultSet resultSet = null;
         try {
-            DBConnection.getConnection("DB");
+            DBConnection.getConnection("sql11419677");
             resultSet = DBConnection.getData(select);
             while(resultSet.next()){
                 User u = new User();
