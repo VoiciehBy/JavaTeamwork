@@ -18,6 +18,11 @@
     ArrayList<Employee> list;
     list = DBDataShow.getDataFromDB();
 %>
+Zalogowano jako:${username}
+<form action="logout" method="post">
+    <input type="submit" value="wyloguj się">
+</form><br>
+
 <table border="1">
 
     <tr>
@@ -50,5 +55,6 @@
     </tr>
     <%}%>
 </table>
+
 </body>
 </html>

@@ -6,16 +6,16 @@ import java.util.Properties;
 public class DBConnection {
     private static Connection connection;
 
-    public static Connection getConnection(String DBName) throws SQLException{
+    public static Connection getConnection(String DBName) throws SQLException {
         String url = "jdbc:mysql://localhost/" + DBName;
         Properties properties = new Properties();
-        properties.setProperty("user","root");
-        properties.setProperty("password","");
+        properties.setProperty("user", "root");
+        properties.setProperty("password", "");
 
-        connection = DriverManager.getConnection(url,properties);
+        connection = DriverManager.getConnection(url, properties);
         return connection;
     }
-    
+
     public static ResultSet getData(String query) throws SQLException {
         Statement statement = null;
         ResultSet resultSet = null;
@@ -25,19 +25,41 @@ public class DBConnection {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return  resultSet;
+        return resultSet;
     }
 
-    public static void executeDML(String query) throws SQLException {
+    private static void executeSQL(String query) throws SQLException {
         Statement statement = null;
         try {
             statement = connection.createStatement();
             statement.execute(query);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            if (statement != null && !statement.isClosed()) statement.close();
         }
-        finally {
-            if(statement != null && !statement.isClosed()) statement.close();
-        }
+    }
+
+    public static void executeDML(String query) throws SQLException {
+        executeSQL(query);
+    }
+
+    private static void executeDDL(String query) throws SQLException {
+        executeSQL(query);
+    }
+
+    public static void createDB() throws SQLException {
+        executeDDL("CREATE DATABASE IF NOT EXIST DB");
+    }
+
+    public static void createTables() throws SQLException {
+        executeDDL("CREATE TABLE IF NOT EXIST credentials(id int auto_increment primary key,"
+                + "login varchar(20) not null,"
+                + "password varchar(20) not null);");
+        executeDDL("CREATE TABLE IF NOT EXIST employee(id int auto_increment primary key,"
+                + "name1 varchar(100) not null,"
+                + "name2 varchar(100) not null,"
+                + "surname varchar(100) not null,"
+                + "birthDate date not null);");
     }
 }

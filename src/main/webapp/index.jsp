@@ -5,8 +5,7 @@
     <title>Praca zespołowa w projektach Java VRB,JJ</title>
 </head>
 <body>
-<form action="DBDataShow" method="post">
-    <input type="submit" value="Enter">
-</form>
+<h5>Witaj Nieznajomy!</h5><br>
+<a href="LoginPage.jsp"><button>Logowanie</button></a>
 </body>
 </html>
