@@ -9,9 +9,8 @@ public class DBConnection {
     public static Connection getConnection(String DBName) throws SQLException {
         String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/" + DBName;
         Properties properties = new Properties();
-        SecretPassword secretPassword = new SecretPassword();
         properties.setProperty("user", "sql11419677");
-        properties.setProperty("password", secretPassword.getPassword());
+        properties.setProperty("password", "");//changePassword
 
         connection = DriverManager.getConnection(url, properties);
         return connection;
