@@ -24,3 +24,6 @@ hs_err_pid*
 
 #secret password
 src/main/java/connection/password.txt
+
+#target directory
+target

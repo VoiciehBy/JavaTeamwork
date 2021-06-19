@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "DBDataShow", value = "/DBDataShow")
+@WebServlet(name = "dbDataShow", value = "/dbDataShow")
 public class DBDataShow extends HttpServlet {
     public static ArrayList<Employee> getDataFromDB() {
         String select = "SELECT * FROM employees;";
@@ -28,7 +28,7 @@ public class DBDataShow extends HttpServlet {
                 e.setSecondName(resultSet.getString("name2"));
                 e.setSurname(resultSet.getString("surname"));
                 e.setBirthDate(resultSet.getDate("birthDate"));
-            list.add(e);
+                list.add(e);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -43,6 +43,6 @@ public class DBDataShow extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("DBDataShow.jsp").forward(request,response);
+        request.getRequestDispatcher("DBDataShow.jsp").forward(request, response);
     }
 }

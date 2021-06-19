@@ -13,14 +13,16 @@
 <body>
 
 <form action="login" method="post">
-    login: <input type="text" name="loginTxt">
-    hasło: <input type="password" name="passTxt">
+    <label for="loginTxt">Login:</label>
+    <input type="text" name="loginTxt" id="loginTxt" placeholder="Podaj login" autocomplete="on" required="required">
+    <label for="passTxt">Hasło:</label>
+    <input type="password" name="passTxt" id="passTxt" placeholder="Podaj hasło" required="required">
     <input type="submit" value="wpisz się">
 </form>
 <%
-   HttpSession s = request.getSession(false);
-  if(s.getAttribute("username") != null)
-    request.getRequestDispatcher ("DBDataShow.jsp").forward(request,response);
+    HttpSession s = request.getSession(false);
+    if (s.getAttribute("username") != null)
+        request.getRequestDispatcher("DBDataShow.jsp").forward(request, response);
 %>
 <p style="color:red">${error}</p>
 </body>

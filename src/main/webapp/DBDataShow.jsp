@@ -21,7 +21,8 @@
 Zalogowano jako:${username}
 <form action="logout" method="post">
     <input type="submit" value="wyloguj się">
-</form><br>
+</form>
+<br>
 
 <table border="1">
 
@@ -55,6 +56,7 @@ Zalogowano jako:${username}
     </tr>
     <%}%>
 </table>
-
+<a href="AddEmployee.jsp"><button>+</button></a>
+<a href="DeleteEmployee.jsp"><button>-</button></a>
 </body>
 </html>

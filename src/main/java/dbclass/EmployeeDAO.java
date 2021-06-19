@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public class EmployeeDAO {
     public static void hireEmployee(String firstName, String secondName, String surname, String date) {
-        String insert = "INSERT INTO employees (firstName,secondName,surname,date) VALUES('"
+        String insert = "INSERT INTO employees (name1,name2,surname,birthDate) VALUES('"
                 + firstName + "',"
                 + "'" + secondName + "',"
                 + "'" + surname + "',"
-                + "str_to_date('" + date + "','%Y-%m-d'));";
+                + "'" + date + "');";
         try {
             DBConnection.executeDML(insert);
             System.out.println(insert);
@@ -20,16 +20,28 @@ public class EmployeeDAO {
         }
     }
 
+    private static void restartEmployeeAutoIncrement(){
+        String restart = "ALTER TABLE employees auto_increment = 1;";
+        try {
+            DBConnection.executeDML(restart);
+            System.out.println(restart);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.err.println("Following statement cannot be processed:" + restart);
+        }
+    }
+
     public static void deleteEmployee(int id, String firstName, String secondName, String surname, String date) {
         String delete = "DELETE FROM employees "
-                + "WHERE id =" + id
-                + "firstName = '" + firstName + "'"
-                + "AND secondName = '" + secondName + "'"
-                + "AND surname = '" + surname + "'"
-                + "date = 'str_to_date('" + date + "','%Y-%m-d');";
+                + "WHERE id =" + id + " "
+                + "AND name1 = '" + firstName + "' "
+                + "AND name2 = '" + secondName + "' "
+                + "AND surname = '" + surname + "' "
+                + "AND birthDate = '" + date + "';";
         try {
             DBConnection.executeDML(delete);
             System.out.println(delete);
+            restartEmployeeAutoIncrement();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.err.println("Following statement cannot be processed:" + delete);
@@ -49,7 +61,7 @@ public class EmployeeDAO {
     }
 
     private static void updateDateColumn(int id, String columnName, String date) {
-        String update = "UPDATE employees SET" + columnName + "= str_to_date('" + date + "','%Y-%m-d')"
+        String update = "UPDATE employees SET" + columnName + "= str_to_date('" + date + "','%d-%m-%Y')"
                 + "WHERE id =" + id + ";";
         try {
             DBConnection.executeDML(update);
@@ -61,11 +73,11 @@ public class EmployeeDAO {
     }
 
     public static void updateFirstName(int id, String firstName) {
-        updateStringColumn(id, "firstName", firstName);
+        updateStringColumn(id, "name1", firstName);
     }
 
     public static void updateSecondName(int id, String secondName) {
-        updateStringColumn(id, "secondName", secondName);
+        updateStringColumn(id, "name2", secondName);
     }
 
     public static void updateSurname(int id, String surname) {
