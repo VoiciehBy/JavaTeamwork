@@ -7,9 +7,9 @@ public class DBConnection {
     private static Connection connection;
 
     public static Connection getConnection(String DBName) throws SQLException {
-        String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/" + DBName;
+        String url = "here_goes_connection_url" + DBName;
         Properties properties = new Properties();
-        properties.setProperty("user", "sql11447897");
+        properties.setProperty("user", "here_goes_username");
         properties.setProperty("password", "here_goes_password");
 
         connection = DriverManager.getConnection(url, properties);
